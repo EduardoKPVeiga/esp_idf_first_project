@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "esp_idf_first_project",
-    "project_version":    "1",
+    "project_version":    "8b6810d-dirty",
     "project_path":       "C:/projects/esp_idf_first_project",
     "idf_path":           "C:/esp-idf",
     "build_dir":          "C:/projects/esp_idf_first_project/build",
@@ -790,7 +790,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/projects/esp_idf_first_project/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/projects/esp_idf_first_project/main/rgb_led.c", "C:/projects/esp_idf_first_project/main/main.c" ],
+            "sources": [ "C:/projects/esp_idf_first_project/main/rgb_led.c", "C:/projects/esp_idf_first_project/main/main.c", "C:/projects/esp_idf_first_project/main/wifi_app.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {
