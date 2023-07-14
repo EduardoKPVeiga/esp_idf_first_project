@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "esp_idf_first_project",
-    "project_version":    "8b6810d-dirty",
+    "project_version":    "6d89f95-dirty",
     "project_path":       "C:/projects/esp_idf_first_project",
     "idf_path":           "C:/esp-idf",
     "build_dir":          "C:/projects/esp_idf_first_project/build",
@@ -11,7 +11,7 @@
     "app_elf":            "esp_idf_first_project.elf",
     "app_bin":            "esp_idf_first_project.bin",
     "build_type":         "flash_app",
-    "git_revision":       "v5.1-231-ga7b62bbcaf",
+    "git_revision":       "v5.1-231-ga7b62bbcaf-dirty",
     "target":             "esp32",
     "rev":                "0",
     "min_rev":            "0",
@@ -790,7 +790,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/projects/esp_idf_first_project/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/projects/esp_idf_first_project/main/rgb_led.c", "C:/projects/esp_idf_first_project/main/main.c", "C:/projects/esp_idf_first_project/main/wifi_app.c" ],
+            "sources": [ "C:/projects/esp_idf_first_project/main/rgb_led.c", "C:/projects/esp_idf_first_project/main/main.c", "C:/projects/esp_idf_first_project/main/wifi_app.c", "C:/projects/esp_idf_first_project/main/http_server.c", "C:/projects/esp_idf_first_project/build/app.css.S", "C:/projects/esp_idf_first_project/build/app.js.S", "C:/projects/esp_idf_first_project/build/favicon.ico.S", "C:/projects/esp_idf_first_project/build/index.html.S", "C:/projects/esp_idf_first_project/build/jquery-3.3.1.min.js.S" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

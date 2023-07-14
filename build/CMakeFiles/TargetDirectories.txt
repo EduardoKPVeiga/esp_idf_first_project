@@ -157,6 +157,13 @@ C:/projects/esp_idf_first_project/build/esp-idf/esp_partition/CMakeFiles/install
 C:/projects/esp_idf_first_project/build/esp-idf/esp_partition/CMakeFiles/install/local.dir
 C:/projects/esp_idf_first_project/build/esp-idf/esp_partition/CMakeFiles/install/strip.dir
 C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/__idf_app_update.dir
+C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/blank_ota_data.dir
+C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/read-otadata.dir
+C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/read_otadata.dir
+C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/erase-otadata.dir
+C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/erase_otadata.dir
+C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/otadata-flash.dir
+C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/encrypted-otadata-flash.dir
 C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/edit_cache.dir
 C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/rebuild_cache.dir
 C:/projects/esp_idf_first_project/build/esp-idf/app_update/CMakeFiles/list_install_components.dir
