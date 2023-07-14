@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "esp_idf_first_project",
-    "project_version":    "6d89f95-dirty",
+    "project_version":    "a5f7c06-dirty",
     "project_path":       "C:/projects/esp_idf_first_project",
     "idf_path":           "C:/esp-idf",
     "build_dir":          "C:/projects/esp_idf_first_project/build",

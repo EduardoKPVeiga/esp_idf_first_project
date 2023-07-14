@@ -131,7 +131,7 @@ static httpd_handle_t http_server_configure(void)
         config.server_port, config.task_priority);
 
     // Start the httpd server
-    if (httpd_start(http_server_handle, &config) == ESP_OK)
+    if (httpd_start(&http_server_handle, &config) == ESP_OK)
     {
         ESP_LOGI(TAG, "httpd_server_configure: registering URI handlers");
 
