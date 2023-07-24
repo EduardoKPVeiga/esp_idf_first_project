@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: C:\esp-idf\components\esp_system\ld\esp32\sections.ld.in */
+/* Generated from: C:\Users\epont\esp\esp-idf\components\esp_system\ld\esp32\sections.ld.in */
 
 /*
  * SPDX-FileCopyrightText: 2021 Espressif Systems (Shanghai) CO LTD
@@ -118,46 +118,6 @@ SECTIONS
     . = ALIGN(4) ;
     _rtc_force_slow_end = ABSOLUTE(.);
   } > rtc_slow_seg
-
-  /**
-   * This section holds RTC FAST data that should have fixed addresses.
-   * The data are not initialized at power-up and are retained during deep sleep.
-   */
-  .rtc_fast_reserved (NOLOAD):
-  {
-    . = ALIGN(4);
-    _rtc_fast_reserved_start = ABSOLUTE(.);
-    /* New data can only be added here to ensure existing data are not moved.
-       Because data have adhered to the end of the segment and code is relied on it.
-       >> put new data here << */
-    KEEP(*(.bootloader_data_rtc_mem .bootloader_data_rtc_mem.*))
-    _rtc_fast_reserved_end = ABSOLUTE(.);
-  } > rtc_fast_reserved_seg
-
-  _rtc_fast_reserved_length = _rtc_fast_reserved_end - _rtc_fast_reserved_start;
-  ASSERT((_rtc_fast_reserved_length <= LENGTH(rtc_fast_reserved_seg)),
-          "RTC FAST reserved segment data does not fit.")
-
-  /**
-   * This section holds RTC SLOW data that should have fixed addresses.
-   * The data are not initialized at power-up and are retained during deep sleep.
-   */
-  .rtc_slow_reserved (NOLOAD):
-  {
-    . = ALIGN(4);
-    _rtc_slow_reserved_start = ABSOLUTE(.);
-    /* New data can only be added here to ensure existing data are not moved.
-       Because data have adhered to the end of the segment and code is relied on it.
-       >> put new data here << */
-
-    *(.rtc_timer_data_in_rtc_mem .rtc_timer_data_in_rtc_mem.*)
-    _rtc_slow_reserved_end = ABSOLUTE(.);
-  } > rtc_slow_reserved_seg
-
-  _rtc_slow_reserved_length = _rtc_slow_reserved_end - _rtc_slow_reserved_start;
-  _rtc_reserved_length = _rtc_slow_reserved_length;
-  ASSERT((_rtc_slow_reserved_length <= LENGTH(rtc_slow_reserved_seg)),
-          "RTC SLOW reserved segment data does not fit.")
 
   /* Get size of rtc slow data based on rtc_data_location alias */
   _rtc_slow_length = (ORIGIN(rtc_slow_seg) == ORIGIN(rtc_data_location))

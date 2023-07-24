@@ -1,6 +1,6 @@
 /*
  * Automatically generated file. DO NOT EDIT.
- * Espressif IoT Development Framework (ESP-IDF) Configuration Header
+ * Espressif IoT Development Framework (ESP-IDF) 5.1.0 Configuration Header
  */
 #pragma once
 #define CONFIG_SOC_BROWNOUT_RESET_SUPPORTED "Not determined"
@@ -619,7 +619,6 @@
 #define CONFIG_VFS_SUPPORT_SELECT 1
 #define CONFIG_VFS_SUPPRESS_SELECT_DEBUG_OUTPUT 1
 #define CONFIG_VFS_SUPPORT_TERMIOS 1
-#define CONFIG_VFS_MAX_COUNT 8
 #define CONFIG_VFS_SEMIHOSTFS_MAX_MOUNT_POINTS 1
 #define CONFIG_WL_SECTOR_SIZE_4096 1
 #define CONFIG_WL_SECTOR_SIZE 4096

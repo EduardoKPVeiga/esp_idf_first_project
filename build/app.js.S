@@ -1,4 +1,4 @@
-/* * Data converted from C:/projects/esp_idf_first_project/main/webpage/app.js
+/* * Data converted from C:/Users/epont/source/repos/esp_idf_first_project/main/webpage/app.js
  */
 .data
 .section .rodata.embedded

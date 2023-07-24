@@ -1,4 +1,4 @@
-/* * Data converted from C:/projects/esp_idf_first_project/main/webpage/favicon.ico
+/* * Data converted from C:/Users/epont/source/repos/esp_idf_first_project/main/webpage/favicon.ico
  */
 .data
 .section .rodata.embedded

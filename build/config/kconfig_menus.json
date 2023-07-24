@@ -8188,9 +8188,9 @@
                                     {
                                         "children": [],
                                         "depends_on": "BT_NIMBLE_ENABLED && BT_NIMBLE_ENABLED",
-                                        "help": "The number of ACL data buffers allocated for host.",
-                                        "id": "BT_NIMBLE_TRANSPORT_ACL_FROM_LL_COUNT",
-                                        "name": "BT_NIMBLE_TRANSPORT_ACL_FROM_LL_COUNT",
+                                        "help": "The number of ACL data buffers.",
+                                        "id": "BT_NIMBLE_ACL_BUF_COUNT",
+                                        "name": "BT_NIMBLE_ACL_BUF_COUNT",
                                         "range": null,
                                         "title": "ACL Buffer count",
                                         "type": "int"
@@ -8199,40 +8199,40 @@
                                         "children": [],
                                         "depends_on": "BT_NIMBLE_ENABLED && BT_NIMBLE_ENABLED",
                                         "help": "This is the maximum size of the data portion of HCI ACL data packets.\nIt does not include the HCI data header (of 4 bytes)",
-                                        "id": "BT_NIMBLE_TRANSPORT_ACL_SIZE",
-                                        "name": "BT_NIMBLE_TRANSPORT_ACL_SIZE",
+                                        "id": "BT_NIMBLE_ACL_BUF_SIZE",
+                                        "name": "BT_NIMBLE_ACL_BUF_SIZE",
                                         "range": null,
-                                        "title": "Transport ACL Buffer size",
+                                        "title": "ACL Buffer size",
                                         "type": "int"
                                     },
                                     {
                                         "children": [],
                                         "depends_on": "BT_NIMBLE_ENABLED && BT_NIMBLE_ENABLED",
                                         "help": "This is the size of each HCI event buffer in bytes. In case of\nextended advertising, packets can be fragmented. 257 bytes is the\nmaximum size of a packet.",
-                                        "id": "BT_NIMBLE_TRANSPORT_EVT_SIZE",
-                                        "name": "BT_NIMBLE_TRANSPORT_EVT_SIZE",
+                                        "id": "BT_NIMBLE_HCI_EVT_BUF_SIZE",
+                                        "name": "BT_NIMBLE_HCI_EVT_BUF_SIZE",
                                         "range": null,
-                                        "title": "Transport Event Buffer size",
+                                        "title": "HCI Event Buffer size",
                                         "type": "int"
                                     },
                                     {
                                         "children": [],
                                         "depends_on": "BT_NIMBLE_ENABLED && BT_NIMBLE_ENABLED",
                                         "help": "This is the high priority HCI events' buffer size. High-priority\nevent buffers are for everything except advertising reports. If there\nare no free high-priority event buffers then host will try to allocate a\nlow-priority buffer instead",
-                                        "id": "BT_NIMBLE_TRANSPORT_EVT_COUNT",
-                                        "name": "BT_NIMBLE_TRANSPORT_EVT_COUNT",
+                                        "id": "BT_NIMBLE_HCI_EVT_HI_BUF_COUNT",
+                                        "name": "BT_NIMBLE_HCI_EVT_HI_BUF_COUNT",
                                         "range": null,
-                                        "title": "Transport Event Buffer count",
+                                        "title": "High Priority HCI Event Buffer count",
                                         "type": "int"
                                     },
                                     {
                                         "children": [],
                                         "depends_on": "BT_NIMBLE_ENABLED && BT_NIMBLE_ENABLED",
                                         "help": "This is the low priority HCI events' buffer size. Low-priority event\nbuffers are only used for advertising reports. If there are no free\nlow-priority event buffers, then an incoming advertising report will\nget dropped",
-                                        "id": "BT_NIMBLE_TRANSPORT_EVT_DISCARD_COUNT",
-                                        "name": "BT_NIMBLE_TRANSPORT_EVT_DISCARD_COUNT",
+                                        "id": "BT_NIMBLE_HCI_EVT_LO_BUF_COUNT",
+                                        "name": "BT_NIMBLE_HCI_EVT_LO_BUF_COUNT",
                                         "range": null,
-                                        "title": "Discardable Transport Event Buffer count",
+                                        "title": "Low Priority HCI Event Buffer count",
                                         "type": "int"
                                     }
                                 ],
@@ -8447,7 +8447,7 @@
                             },
                             {
                                 "children": [],
-                                "depends_on": "BT_NIMBLE_ENABLED && IDF_TARGET_ESP32 && BT_NIMBLE_ENABLED",
+                                "depends_on": "BT_NIMBLE_ENABLED && !IDF_TARGET_ESP32 && BT_NIMBLE_ENABLED",
                                 "help": "Use this option to do host based Random Private Address resolution.\nIf this option is disabled then controller based privacy is used.",
                                 "id": "BT_NIMBLE_HOST_BASED_PRIVACY",
                                 "name": "BT_NIMBLE_HOST_BASED_PRIVACY",
@@ -8688,16 +8688,6 @@
                                 "name": "BT_NIMBLE_BLE_GATT_BLOB_TRANSFER",
                                 "range": null,
                                 "title": "Blob transfer",
-                                "type": "bool"
-                            },
-                            {
-                                "children": [],
-                                "depends_on": "BT_NIMBLE_ENABLED",
-                                "help": "This option is used to enable support for sending Vendor Specific HCI commands and handling\nVendor Specific HCI Events.",
-                                "id": "BT_NIMBLE_VS_SUPPORT",
-                                "name": "BT_NIMBLE_VS_SUPPORT",
-                                "range": null,
-                                "title": "Enable support for VSC and VSE",
                                 "type": "bool"
                             }
                         ],
@@ -13130,75 +13120,6 @@
                         "id": "component-config-hardware-settings-main-xtal-config",
                         "title": "Main XTAL Config",
                         "type": "menu"
-                    },
-                    {
-                        "children": [
-                            {
-                                "children": [
-                                    {
-                                        "children": [
-                                            {
-                                                "children": [],
-                                                "depends_on": "<choice ESP_CRYPTO_DPA_PROTECTION_LEVEL>",
-                                                "help": null,
-                                                "id": "ESP_CRYPTO_DPA_PROTECTION_LEVEL_LOW",
-                                                "name": "ESP_CRYPTO_DPA_PROTECTION_LEVEL_LOW",
-                                                "range": null,
-                                                "title": "Security level low",
-                                                "type": "bool"
-                                            },
-                                            {
-                                                "children": [],
-                                                "depends_on": "<choice ESP_CRYPTO_DPA_PROTECTION_LEVEL>",
-                                                "help": null,
-                                                "id": "ESP_CRYPTO_DPA_PROTECTION_LEVEL_MEDIUM",
-                                                "name": "ESP_CRYPTO_DPA_PROTECTION_LEVEL_MEDIUM",
-                                                "range": null,
-                                                "title": "Security level medium",
-                                                "type": "bool"
-                                            },
-                                            {
-                                                "children": [],
-                                                "depends_on": "<choice ESP_CRYPTO_DPA_PROTECTION_LEVEL>",
-                                                "help": null,
-                                                "id": "ESP_CRYPTO_DPA_PROTECTION_LEVEL_HIGH",
-                                                "name": "ESP_CRYPTO_DPA_PROTECTION_LEVEL_HIGH",
-                                                "range": null,
-                                                "title": "Security level high",
-                                                "type": "bool"
-                                            }
-                                        ],
-                                        "depends_on": "ESP_CRYPTO_DPA_PROTECTION_AT_STARTUP && SOC_CRYPTO_DPA_PROTECTION_SUPPORTED",
-                                        "help": "Configure the DPA protection security level",
-                                        "id": "component-config-hardware-settings-crypto-dpa-protection-enable-crypto-dpa-protection-at-startup-dpa-protection-level",
-                                        "name": "ESP_CRYPTO_DPA_PROTECTION_LEVEL",
-                                        "title": "DPA protection level",
-                                        "type": "choice"
-                                    }
-                                ],
-                                "depends_on": "SOC_CRYPTO_DPA_PROTECTION_SUPPORTED",
-                                "help": "This config controls the DPA (Differential Power Analysis) protection\nknob for the crypto peripherals. DPA protection dynamically adjusts the\nclock frequency of the crypto peripheral. DPA protection helps to make it\ndifficult to perform SCA attacks on the crypto peripherals. However,\nthere is also associated performance impact based on the security level\nset. Please refer to the TRM for more details.",
-                                "id": "ESP_CRYPTO_DPA_PROTECTION_AT_STARTUP",
-                                "name": "ESP_CRYPTO_DPA_PROTECTION_AT_STARTUP",
-                                "range": null,
-                                "title": "Enable crypto DPA protection at startup",
-                                "type": "bool"
-                            },
-                            {
-                                "children": [],
-                                "depends_on": "SOC_CRYPTO_DPA_PROTECTION_SUPPORTED",
-                                "help": null,
-                                "id": "ESP_CRYPTO_DPA_PROTECTION_LEVEL",
-                                "name": "ESP_CRYPTO_DPA_PROTECTION_LEVEL",
-                                "range": null,
-                                "title": null,
-                                "type": "int"
-                            }
-                        ],
-                        "depends_on": "SOC_CRYPTO_DPA_PROTECTION_SUPPORTED",
-                        "id": "component-config-hardware-settings-crypto-dpa-protection",
-                        "title": "Crypto DPA Protection",
-                        "type": "menu"
                     }
                 ],
                 "depends_on": null,
@@ -13559,16 +13480,6 @@
                         "range": null,
                         "title": null,
                         "type": "int"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": "SOC_PHY_IMPROVE_RX_11B",
-                        "help": "This is a workaround to improve Wi-Fi receive 11b pkts for some modules using AC-DC power supply with\nhigh interference, enable this option will sacrifice Wi-Fi OFDM receive performance.\nBut to guarantee 11b receive performance serves as a bottom line in this case.",
-                        "id": "ESP_PHY_IMPROVE_RX_11B",
-                        "name": "ESP_PHY_IMPROVE_RX_11B",
-                        "range": null,
-                        "title": "Improve Wi-Fi receive 11b pkts",
-                        "type": "bool"
                     }
                 ],
                 "depends_on": null,
@@ -13693,7 +13604,7 @@
                     {
                         "children": [],
                         "depends_on": "SOC_PAU_SUPPORTED",
-                        "help": "If enabled, digital peripherals will be powered down in light sleep, it will reduce sleep\ncurrent consumption by about 100 uA. Chip will save/restore register context at sleep/wake\ntime to keep the system running. Enabling this option will increase static RAM and heap usage,\nthe actual cost depends on the peripherals you have initialized. In order to save/restore the\ncontext of the necessary hardware for FreeRTOS to run, it will need at least 4.55 KB free heap\nat sleep time. Otherwise sleep will not power down the peripherals.\n\nNote1: Please use this option with caution, the current IDF does not support the retention of\nall peripherals. When the digital peripherals are powered off and a sleep and wake-up is completed,\nthe peripherals that have not saved the running context are equivalent to performing a reset.\n!!! Please confirm the peripherals used in your application and their sleep retention support status\nbefore enabling this option, peripherals sleep retention driver support status is tracked in\npower_management.rst\n\nNote2: When this option is enabled simultaneously with FREERTOS_USE_TICKLESS_IDLE, since the UART will\nbe powered down, the uart FIFO will be flushed before sleep to avoid data loss, however, this has the\npotential to block the sleep process and cause the wakeup time to be skipped, which will cause the tick\nof freertos to not be compensated correctly when returning from sleep and cause the system to crash.\nTo avoid this, you can increase FREERTOS_IDLE_TIME_BEFORE_SLEEP threshold in menuconfig.",
+                        "help": "If enabled, digital peripherals will be powered down in light sleep, it will reduce sleep\ncurrent consumption by about 100 uA. Chip will save/restore register context at sleep/wake\ntime to keep the system running. Enabling this option will increase static RAM and heap usage,\nthe actual cost depends on the peripherals you have initialized. In order to save/restore the\ncontext of the necessary hardware for FreeRTOS to run, it will need at least 4.55 KB free heap\nat sleep time. Otherwise sleep will not power down the peripherals.\n\nNote1: Please use this option with caution, the current IDF does not support the retention of\nall peripherals. When the digital peripherals are powered off and a sleep and wake-up is completed,\nthe peripherals that have not saved the running context are equivalent to performing a reset.\n!!! Please confirm the peripherals used in your application and their sleep retention support status\nbefore enabling this option, peripherals sleep retention driver support status is tracked in\npower_management.rst\n\nNote2: When this option is enabled simultaneously with FREERTOS_USE_TICKLESS_IDLE, since the UART will\nbe powered down, the uart FIFO will be flushed before sleep to avoid data loss, however, this has the\npotential to block the sleep process and cause the wakeup time to be skipped, which will cause the tick\nof freertos to not be compensated correctly when returning from sleep and cause the system to crash.\nTo avoid this, you can use ESP_PM_NO_LIGHT_SLEEP to protect your UART transmission, fflush the stdout\nafter printing, or increase FREERTOS_IDLE_TIME_BEFORE_SLEEP threshold in menuconfig.",
                         "id": "PM_POWER_DOWN_PERIPHERAL_IN_LIGHT_SLEEP",
                         "name": "PM_POWER_DOWN_PERIPHERAL_IN_LIGHT_SLEEP",
                         "range": null,
@@ -16456,16 +16367,6 @@
                         "name": "ESP_COREDUMP_ENABLE",
                         "range": null,
                         "title": null,
-                        "type": "bool"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": "ESP_COREDUMP_ENABLE",
-                        "help": "Enable/disable coredump logs. Logs strings from espcoredump component are\nplaced in DRAM. Disabling these helps to save ~5KB of internal memory.",
-                        "id": "ESP_COREDUMP_LOGS",
-                        "name": "ESP_COREDUMP_LOGS",
-                        "range": null,
-                        "title": "Enable coredump logs for debugging",
                         "type": "bool"
                     },
                     {
@@ -23437,19 +23338,6 @@
                                 "range": null,
                                 "title": "Provide termios.h functions",
                                 "type": "bool"
-                            },
-                            {
-                                "children": [],
-                                "depends_on": "VFS_SUPPORT_IO",
-                                "help": "Define maximum number of virtual filesystems that can be registered.",
-                                "id": "VFS_MAX_COUNT",
-                                "name": "VFS_MAX_COUNT",
-                                "range": [
-                                    1,
-                                    20
-                                ],
-                                "title": "Maximum Number of Virtual Filesystems",
-                                "type": "int"
                             },
                             {
                                 "children": [
