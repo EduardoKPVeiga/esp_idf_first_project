@@ -344,6 +344,15 @@ esp_idf_first_project_IS_TOP_LEVEL:STATIC=ON
 esp_idf_first_project_SOURCE_DIR:STATIC=C:/Users/epont/source/repos/esp_idf_first_project
 
 //Value Computed by CMake
+firmware_update_test_BINARY_DIR:STATIC=C:/Users/epont/source/repos/esp_idf_first_project/build
+
+//Value Computed by CMake
+firmware_update_test_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+firmware_update_test_SOURCE_DIR:STATIC=C:/Users/epont/source/repos/esp_idf_first_project
+
+//Value Computed by CMake
 mbed TLS_BINARY_DIR:STATIC=C:/Users/epont/source/repos/esp_idf_first_project/build/esp-idf/mbedtls/mbedtls
 
 //Value Computed by CMake
