@@ -68,8 +68,8 @@ static void wifi_app_event_handler(void *arg, esp_event_base_t event_base, int32
         case WIFI_EVENT_STA_DISCONNECTED:
             ESP_LOGI(TAG, "WIFI_EVENT_STA_DISCONNECTED");
 
-            wifi_event_sta_disconnected_t *wifi_event_sta_disconnected = (wifi_event_sta_disconnected_t*)malloc(sizeof(wifi_event_sta_disconnected_t));
-            *wifi_event_sta_disconnected = *((wifi_event_sta_disconnected_t*)event_data);
+            wifi_event_sta_disconnected_t *wifi_event_sta_disconnected = (wifi_event_sta_disconnected_t *)malloc(sizeof(wifi_event_sta_disconnected_t));
+            *wifi_event_sta_disconnected = *((wifi_event_sta_disconnected_t *)event_data);
             printf("WIFI_EVENT_STA_DISCONNECTED, reason code %d\n", wifi_event_sta_disconnected->reason);
 
             if (g_retry_number < MAX_CONNECTION_RETRIES)
@@ -97,9 +97,6 @@ static void wifi_app_event_handler(void *arg, esp_event_base_t event_base, int32
             wifi_app_send_message(WIFI_APP_MSG_STA_CONNECTED_GOT_IP);
 
             break;
-
-        default:
-            break;
         }
     }
 }
@@ -116,7 +113,7 @@ static void wifi_app_event_handler_init(void)
     esp_event_handler_instance_t instance_wifi_event;
     esp_event_handler_instance_t instance_ip_event;
     ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_app_event_handler, NULL, &instance_wifi_event));
-    ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_app_event_handler, NULL, &instance_ip_event));
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, ESP_EVENT_ANY_ID, &wifi_app_event_handler, NULL, &instance_ip_event));
 }
 
 /**
@@ -160,12 +157,12 @@ static void wifi_app_soft_ap_config(void)
     esp_netif_ip_info_t ap_ip_info;
     memset(&ap_ip_info, 0x00, sizeof(ap_ip_info));
 
-    esp_netif_dhcps_stop(esp_netif_ap);                                     ///> Must call this first
-    inet_pton(AF_INET, WIFI_AP_IP, &ap_ip_info.ip);                         ///> Assign access point's static ip, gateway and netmask
+    esp_netif_dhcps_stop(esp_netif_ap);             ///> Must call this first
+    inet_pton(AF_INET, WIFI_AP_IP, &ap_ip_info.ip); ///> Assign access point's static ip, gateway and netmask
     inet_pton(AF_INET, WIFI_AP_GATEWAY, &ap_ip_info.gw);
     inet_pton(AF_INET, WIFI_AP_NETMASK, &ap_ip_info.netmask);
-    ESP_ERROR_CHECK(esp_netif_set_ip_info(esp_netif_ap, &ap_ip_info));      ///> Statically configure the network interface
-    ESP_ERROR_CHECK(esp_netif_dhcps_start(esp_netif_ap));                   ///> Start the AP DHCP server (for connecting stations e.g. your mobile device)
+    ESP_ERROR_CHECK(esp_netif_set_ip_info(esp_netif_ap, &ap_ip_info)); ///> Statically configure the network interface
+    ESP_ERROR_CHECK(esp_netif_dhcps_start(esp_netif_ap));              ///> Start the AP DHCP server (for connecting stations e.g. your mobile device)
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_APSTA));                    ///> Setting the mode as Acces Point  / Station Mode
     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_AP, &ap_config));       ///> Set our configuration
@@ -174,8 +171,8 @@ static void wifi_app_soft_ap_config(void)
 }
 
 /**
- * Connects the ESP32  to an external AP using the update station configuration 
-*/
+ * Connects the ESP32  to an external AP using the update station configuration
+ */
 static void wifi_app_connect_sta(void)
 {
     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, wifi_app_get_wifi_config()));
@@ -260,7 +257,7 @@ BaseType_t wifi_app_send_message(wifi_app_message_e msgID)
     return xQueueSend(wifi_app_queue_handle, &msg, portMAX_DELAY);
 }
 
-wifi_config_t* wifi_app_get_wifi_config(void)
+wifi_config_t *wifi_app_get_wifi_config(void)
 {
     return wifi_config;
 }
@@ -276,7 +273,7 @@ void wifi_app_start(void)
     esp_log_level_set("wifi", ESP_LOG_NONE);
 
     // Allocate memory for the wifi configuration
-    wifi_config = (wifi_config_t*)malloc(sizeof(wifi_config_t));
+    wifi_config = (wifi_config_t *)malloc(sizeof(wifi_config_t));
     memset(wifi_config, 0x00, sizeof(wifi_config_t));
 
     // Create message queue

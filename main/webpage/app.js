@@ -137,28 +137,28 @@ function stopWifiConnectStatusInterval()
  */
 function getWifiConnectStatus()
 {
-    $("#wifi_connect_credentials_errors").html("<p>getWifiConnectStatus</p>");
-
     var xhr = new XMLHttpRequest();
     var requestURL = "/wifiConnectStatus";
     xhr.open('POST', requestURL, false);
     xhr.send('wifi_connect_status');
-
+    
     if (xhr.readyState == 4 && xhr.status == 200)
     {
-        $("#wifi_connect_credentials_errors").html("<p>getWifiConnectStatus, inside IF</p>");
         var response = JSON.parse(xhr.responseText);
+        console.log(xhr.responseText);
 
-        document.getElementById("wifi_connect_status").innerHTML = "Connecting...";
+        $("#wifi_connect_credentials_errors").html("Connecting...");
 
         if (response.wifi_connect_status == 2)
         {
-            document.getElementById("wifi_connect_status").innerHTML = "<h4 class='rd'>Failed to Connect. Please check your AP credentials and compatibility</h4>";
+            document.getElementById("wifi_connect_status").innerHTML="<h4 class='rd'>Failed to Connect. Please check your AP credentials and compatibility</h4>";
+            //$("#wifi_connect_credentials_errors").html("Failed to Connect. Please check your AP credentials and compatibility.");
             stopWifiConnectStatusInterval();
         }
         else if (response.wifi_connect_status == 3)
         {
-            document.getElementById("wifi_connect_status").innerHTML = "<h4 class='gr'>Connection Success!</h4>";
+            document.getElementById("wifi_connect_status").innerHTML="<h4 class='gr'>Connection Success!</h4>";
+            //$("#wifi_connect_credentials_errors").html("Connection Success!");
             stopWifiConnectStatusInterval();
         }
     }
@@ -169,7 +169,6 @@ function getWifiConnectStatus()
  */
 function startWifiConnectStatusInterval()
 {
-    $("#wifi_connect_credentials_errors").html("<p>startWifiConnectStatusInterval</p>");
     wifiConnectInterval = setInterval(getWifiConnectStatus, 2800);
 }
 
@@ -178,8 +177,6 @@ function startWifiConnectStatusInterval()
  */
 function connectWifi()
 {
-    $("#wifi_connect_credentials_errors").html("<p>connectWifi</p>");
-
     // Get the SSID and password
     selectedSSID = $("#connect_ssid").val();
     pwd = $("#connect_pass").val();
