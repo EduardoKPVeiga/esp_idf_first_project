@@ -7,7 +7,6 @@
 #include "esp_wifi.h"
 #include "lwip/netdb.h"
 
-#include "rgb_led.h"
 #include "tasks_common.h"
 #include "wifi_app.h"
 #include "http_server.h"
@@ -211,7 +210,6 @@ static void wifi_app_task(void *pvParameters)
             case WIFI_APP_MSG_START_HTTP_SERVER:
                 ESP_LOGI(TAG, "WIFI_APP_MSG_START_HTTP_SERVER");
                 http_server_start();
-                rgb_led_http_server_started();
                 break;
 
             case WIFI_APP_MSG_CONNECTING_FROM_HTTP_SERVER:
@@ -231,8 +229,15 @@ static void wifi_app_task(void *pvParameters)
             case WIFI_APP_MSG_STA_CONNECTED_GOT_IP:
                 ESP_LOGI(TAG, "WIFI_APP_MSG_STA_CONNECTED_GOT_IP");
 
-                rgb_led_wifi_connected();
                 http_server_monitor_send_message(HTTP_MSG_WIFI_CONNECT_SUCCESS);
+
+                break;
+
+            case WIFI_APP_MSG_USER_REQUESTED_STA_DISCONNECT:
+                ESP_LOGI(TAG, "WIFI_APP_MSG_USER_REQUESTED_STA_DISCONNECT");
+
+                g_retry_number = MAX_CONNECTION_RETRIES;
+                ESP_ERROR_CHECK(esp_wifi_disconnect());
 
                 break;
 
@@ -265,9 +270,6 @@ wifi_config_t *wifi_app_get_wifi_config(void)
 void wifi_app_start(void)
 {
     ESP_LOGI(TAG, "STARTING WIFI APPLICATION");
-
-    // Start WiFi started LED
-    rgb_led_wifi_app_started();
 
     // Disable default WiFi logging messages
     esp_log_level_set("wifi", ESP_LOG_NONE);
