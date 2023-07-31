@@ -301,7 +301,7 @@ function startLocalTimeInterval()
  */
 function getLocalTime()
 {
-    $.getJSON('/localTime.json', function(data {
-        $.("#local_time").text(data["time"]);
-    }));
+    $.getJSON('/localTime.json', function(data) {
+		$("#local_time").text(data["time"]);
+	});
 }
